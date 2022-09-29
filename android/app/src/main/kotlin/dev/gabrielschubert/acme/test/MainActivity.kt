@@ -1,4 +1,4 @@
-package com.example.acme
+package dev.gabrielschubert.acme.test
 
 import io.flutter.embedding.android.FlutterActivity
 
