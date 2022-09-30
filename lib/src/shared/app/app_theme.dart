@@ -1,3 +1,4 @@
+import 'package:acme/src/shared/app/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -6,12 +7,14 @@ class AppTheme {
   static ThemeData themeData() {
     return ThemeData(
       useMaterial3: true,
+      backgroundColor: const Color(0xFFFFFCEC),
       appBarTheme: const AppBarTheme(
         shadowColor: Colors.black,
-        backgroundColor: Colors.red,
+        backgroundColor: AppConstants.secondaryColor,
         surfaceTintColor: Colors.transparent,
         scrolledUnderElevation: 0.0,
         titleSpacing: 16,
+        elevation: 0.0,
       ),
       textTheme: const TextTheme(
         titleLarge: TextStyle(color: Colors.white),

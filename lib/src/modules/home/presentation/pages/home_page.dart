@@ -1,58 +1,69 @@
-import 'package:acme/src/shared/components/glassmorphed/glassmorphed_app_bar.dart';
+import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
+import 'package:acme/src/modules/products/presentation/components/buttons/cart_checkout_button.dart';
+import 'package:acme/src/modules/products/presentation/components/product_card.dart';
+import 'package:acme/src/modules/products/presentation/states/product/product_bloc.dart';
+import 'package:acme/src/shared/app/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatelessWidget {
-  final int listCount = 10;
-
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<ProductEntity> products = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<ProductBloc>().add(FetchProducts());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GlassmorphedAppBar(offset: 16, opacity: 0.4),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          EdgeInsets cardEdgeInsets = const EdgeInsets.fromLTRB(16, 8, 16, 0);
-
-          if (index == listCount - 1) {
-            cardEdgeInsets = cardEdgeInsets.copyWith(bottom: 8);
+      appBar: AppBar(
+        title: Text(
+          "Lista dos Produtos",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(color: AppConstants.primaryColor),
+        ),
+        actions: const <Widget>[
+          CartCheckoutButton(
+            margin: EdgeInsets.symmetric(horizontal: 8),
+          )
+        ],
+      ),
+      body: BlocConsumer<ProductBloc, ProductState>(
+        listener: (context, state) {
+          if (state is ProductAdded) {
+            products.add(state.product);
           }
-          return Container(
-            margin: cardEdgeInsets,
-            height: 120,
-            color: Colors.red,
-          );
         },
-        itemCount: listCount,
+        builder: (context, state) => ListView.builder(
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            final product = products[index];
+
+            EdgeInsets cardMargin = const EdgeInsets.fromLTRB(16, 8, 16, 0);
+            if (index == (products.length - 1)) {
+              cardMargin = cardMargin.copyWith(bottom: 8);
+            }
+
+            return GestureDetector(
+              onTap: () => Feedback.forTap(context),
+              child: ProductCard(
+                product,
+                cardHeight: 130,
+                cardMargin: cardMargin,
+              ),
+            );
+          },
+        ),
       ),
-      bottomNavigationBar: Container(
-        height: 80,
-        color: Colors.grey,
-      ),
-      extendBodyBehindAppBar: true,
-      extendBody: true,
     );
   }
 }
-
-
-// GridView.builder(
-//         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-//         itemCount: 10,
-//         itemBuilder: (context, index) {
-//           late final EdgeInsets edgeInsets;
-
-//           if (index % 2 == 0) {
-//             edgeInsets = const EdgeInsets.fromLTRB(20, 8, 8, 4);
-//           } else {
-//             edgeInsets = const EdgeInsets.fromLTRB(8, 8, 20, 4);
-//           }
-
-//           return Container(
-//             margin: edgeInsets,
-//             // width: 50,
-//             height: 200,
-//             color: Colors.red,
-//           );
-//         },
-//       )
