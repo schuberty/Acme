@@ -1,0 +1,1 @@
+class ClientError implements Exception {}
