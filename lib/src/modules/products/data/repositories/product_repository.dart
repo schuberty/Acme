@@ -11,6 +11,7 @@ class ProductRepository implements ProductRepositoryBase {
 
   ProductRepository({required HttpClientServiceBase client}) : _client = client;
 
+  @override
   Stream<ProductEntity> fetchProducts() async* {
     for (var i = 0; i < max(verbList.length, adjectiveList.length); i++) {
       final title = "${verbList[i]} ${adjectiveList[i]}";

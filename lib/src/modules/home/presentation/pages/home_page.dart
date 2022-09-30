@@ -3,6 +3,7 @@ import 'package:acme/src/modules/products/presentation/components/cart_checkout_
 import 'package:acme/src/modules/products/presentation/components/product_card.dart';
 import 'package:acme/src/modules/products/presentation/states/product/product_bloc.dart';
 import 'package:acme/src/shared/app/app_constants.dart';
+import 'package:acme/src/shared/app/route/route_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -55,7 +56,14 @@ class _HomePageState extends State<HomePage> {
             }
 
             return GestureDetector(
-              onTap: () => Feedback.forTap(context),
+              onTap: () {
+                Feedback.forTap(context);
+
+                Navigator.of(context).pushNamed(
+                  "/product",
+                  arguments: ProductRouteArgument(product: product),
+                );
+              },
               child: ProductCard(
                 product,
                 cardHeight: 130,
