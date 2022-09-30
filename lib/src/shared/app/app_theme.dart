@@ -14,7 +14,6 @@ class AppTheme {
         surfaceTintColor: Colors.transparent,
         scrolledUnderElevation: 0.0,
         titleSpacing: 16,
-        elevation: 0.0,
       ),
       textTheme: const TextTheme(
         titleLarge: TextStyle(color: Colors.white),
