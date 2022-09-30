@@ -1,14 +1,13 @@
 import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  final ProductEntity _product;
+  final ProductEntity product;
 
   const ProductPage({
-    required ProductEntity product,
+    required this.product,
     super.key,
-  }) : _product = product;
+  });
 
   @override
   Widget build(BuildContext context) {

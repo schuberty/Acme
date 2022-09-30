@@ -1,5 +1,5 @@
 import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
-import 'package:acme/src/modules/products/presentation/components/buttons/cart_checkout_button.dart';
+import 'package:acme/src/modules/products/presentation/components/cart_checkout_button.dart';
 import 'package:acme/src/modules/products/presentation/components/product_card.dart';
 import 'package:acme/src/modules/products/presentation/states/product/product_bloc.dart';
 import 'package:acme/src/shared/app/app_constants.dart';
@@ -31,9 +31,10 @@ class _HomePageState extends State<HomePage> {
           "Lista dos Produtos",
           style: Theme.of(context).textTheme.titleLarge!.copyWith(color: AppConstants.primaryColor),
         ),
-        actions: const <Widget>[
+        actions: <Widget>[
           CartCheckoutButton(
-            margin: EdgeInsets.symmetric(horizontal: 8),
+            onTap: () {},
+            margin: const EdgeInsets.symmetric(horizontal: 16),
           )
         ],
       ),

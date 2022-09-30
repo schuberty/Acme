@@ -4,17 +4,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final ProductEntity _product;
+  final ProductEntity product;
   final double cardHeight;
   final EdgeInsets cardMargin;
 
   const ProductCard(
-    ProductEntity product, {
+    this.product, {
     this.cardHeight = 120,
     this.cardMargin = const EdgeInsets.fromLTRB(16, 4, 16, 4),
     super.key,
-  })  : assert(cardHeight >= 120),
-        _product = product;
+  }) : assert(cardHeight >= 120);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class ProductCard extends StatelessWidget {
     final resultWidget = Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: CachedNetworkImageProvider(_product.imageUrl),
+          image: CachedNetworkImageProvider(product.imageUrl),
           alignment: Alignment.bottomCenter,
           fit: BoxFit.cover,
         ),
@@ -75,7 +74,7 @@ class ProductCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            if (!_product.isFavorite) favoriteWidget,
+            if (!product.isFavorite) favoriteWidget,
             Flexible(
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -87,18 +86,18 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          _product.title,
+                          product.title,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Text(
-                          "R\$${_product.price.toStringAsFixed(2)}",
+                          "R\$${product.price.toStringAsFixed(2)}",
                           style: Theme.of(context).textTheme.titleSmall,
                         )
                       ],
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      _product.description,
+                      product.description,
                       style: Theme.of(context).textTheme.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,

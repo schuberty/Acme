@@ -2,24 +2,24 @@ import 'package:acme/src/shared/app/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CartCheckoutButton extends StatelessWidget {
-  final EdgeInsets? _margin;
-  final VoidCallback? _onTap;
+  final EdgeInsets? margin;
+  final VoidCallback? onTap;
 
-  const CartCheckoutButton({
-    EdgeInsets? margin,
-    VoidCallback? onTap,
-    super.key,
-  })  : _margin = margin,
-        _onTap = onTap;
+  const CartCheckoutButton({this.margin, this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: _margin,
-      child: IconButton(
-        onPressed: _onTap,
-        highlightColor: Colors.transparent,
-        icon: const Icon(
+      margin: margin,
+      child: GestureDetector(
+        onTap: () {
+          Feedback.forTap(context);
+
+          if (onTap != null) {
+            onTap!();
+          }
+        },
+        child: const Icon(
           Icons.shopping_cart_checkout,
           color: AppConstants.primaryColor,
         ),
