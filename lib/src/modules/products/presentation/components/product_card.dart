@@ -43,9 +43,17 @@ class ProductCard extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: CachedNetworkImageProvider(_product.imageUrl),
-          fit: BoxFit.cover,
           alignment: Alignment.bottomCenter,
+          fit: BoxFit.cover,
         ),
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Colors.black38,
+            offset: Offset(0, 1),
+            spreadRadius: 1,
+            blurRadius: 2,
+          )
+        ],
         borderRadius: borderRadius,
       ),
       child: Container(
