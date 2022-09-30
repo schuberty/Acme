@@ -1,5 +1,39 @@
-class ProductConstants {
-  ProductConstants._();
+import 'dart:async';
+import 'dart:math';
+
+import 'package:acme/src/modules/products/data/utils/product_endpoints.dart';
+import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
+import 'package:acme/src/modules/products/domain/repositories/product_repository_base.dart';
+import 'package:acme/src/shared/modules/http_client/domain/services/http_client_service.dart';
+
+class ProductRepository implements ProductRepositoryBase {
+  final HttpClientServiceBase _client;
+
+  ProductRepository({required HttpClientServiceBase client}) : _client = client;
+
+  Stream<ProductEntity> fetchProducts() async* {
+    for (var i = 0; i < max(verbList.length, adjectiveList.length); i++) {
+      final title = "${verbList[i]} ${adjectiveList[i]}";
+      final id = title.hashCode;
+
+      final descriptionEndpoint = ProductEndpoints.getDescriptionUrlEndpoint();
+
+      final imageEndpoint = ProductEndpoints.getImageUrlEndpoint(imageId: id.toString());
+      final descriptionResponse = await _client.get(descriptionEndpoint);
+
+      final price = ((id * (i + 1.0)) % 299) + ((id % 100) * 0.01);
+
+      final product = ProductEntity(
+        id: id,
+        title: title,
+        description: descriptionResponse,
+        imageUrl: imageEndpoint,
+        price: price,
+      );
+
+      yield product;
+    }
+  }
 
   static const List<String> verbList = <String>[
     "Armário",
@@ -59,7 +93,7 @@ class ProductConstants {
     "valioso",
     "legítimo",
     "desleixado",
-    "Natural",
+    "natural",
     "inteligente",
     "disciplinado",
     "louvável",
@@ -87,7 +121,7 @@ class ProductConstants {
     "espantoso",
     "traidor",
     "perfeccionista",
-    "Qualificado",
+    "qualificado",
     "feio",
     "tolerante",
     "orgulhoso",
