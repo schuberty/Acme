@@ -16,6 +16,7 @@ dependencies:
   shared_preferences: ^2.0.15
 
   # Injection and states
+  bloc: ^8.1.0
   provider: ^6.0.3
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
@@ -23,8 +24,9 @@ dependencies:
   # HTTP requests
   dio: ^4.0.6
 
-  # Pie chart
+  # General widgets
   syncfusion_flutter_charts: ^20.2.50
+  cached_network_image: ^3.2.2
 
   cupertino_icons: ^1.0.2
 
