@@ -23,9 +23,12 @@ class ProductPage extends StatelessWidget {
             automaticallyImplyLeading: false,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.zero,
-              background: CachedNetworkImage(
-                imageUrl: product.imageUrl,
-                fit: BoxFit.cover,
+              background: Hero(
+                tag: product.id,
+                child: CachedNetworkImage(
+                  imageUrl: product.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
               title: SizedBox.expand(
                 child: Container(

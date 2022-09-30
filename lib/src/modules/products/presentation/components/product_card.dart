@@ -38,75 +38,78 @@ class ProductCard extends StatelessWidget {
       ),
     );
 
-    final resultWidget = Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: CachedNetworkImageProvider(product.imageUrl),
-          alignment: Alignment.bottomCenter,
-          fit: BoxFit.cover,
-        ),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            color: Colors.black38,
-            offset: Offset(0, 1),
-            spreadRadius: 1,
-            blurRadius: 2,
-          )
-        ],
-        borderRadius: borderRadius,
-      ),
+    final resultWidget = Hero(
+      tag: product.id,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          gradient: LinearGradient(
-            colors: [
-              Colors.black.withOpacity(0.8),
-              Colors.black.withOpacity(0.4),
-              Colors.black.withOpacity(0.1),
-              Colors.transparent,
-            ],
-            stops: const [0, 0.3, 0.6, 0.9],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
+          image: DecorationImage(
+            image: CachedNetworkImageProvider(product.imageUrl),
+            alignment: Alignment.bottomCenter,
+            fit: BoxFit.cover,
           ),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.black38,
+              offset: Offset(0, 1),
+              spreadRadius: 1,
+              blurRadius: 2,
+            )
+          ],
+          borderRadius: borderRadius,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            if (!product.isFavorite) favoriteWidget,
-            Flexible(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          product.title,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        Text(
-                          "R\$${product.price.toStringAsFixed(2)}",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      product.description,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                  ],
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            gradient: LinearGradient(
+              colors: [
+                Colors.black.withOpacity(0.8),
+                Colors.black.withOpacity(0.4),
+                Colors.black.withOpacity(0.1),
+                Colors.transparent,
+              ],
+              stops: const [0, 0.3, 0.6, 0.9],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              if (!product.isFavorite) favoriteWidget,
+              Flexible(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            product.title,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            "R\$${product.price.toStringAsFixed(2)}",
+                            style: Theme.of(context).textTheme.titleSmall,
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        product.description,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
