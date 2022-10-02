@@ -17,8 +17,10 @@ class AppTheme {
       ),
       textTheme: const TextTheme(
         titleLarge: TextStyle(color: Colors.white),
+        titleMedium: TextStyle(color: Colors.white),
         titleSmall: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         bodyMedium: TextStyle(color: Colors.white),
+        bodySmall: TextStyle(color: Colors.white),
       ),
     );
   }

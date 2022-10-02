@@ -3,11 +3,11 @@ import 'package:flutter/widgets.dart';
 class RouteAnimator {
   const RouteAnimator._();
 
-  static PageRouteBuilder rightToLeftRoute(Widget page) {
+  static PageRouteBuilder bottomToTopRoute(Widget page) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => page,
       transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
-        position: slideAnimation(animation),
+        position: slideAnimation(animation, begin: const Offset(0.0, 1.0)),
         child: child,
       ),
     );
