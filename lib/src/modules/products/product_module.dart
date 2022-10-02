@@ -1,6 +1,7 @@
 import 'package:acme/src/modules/products/data/repositories/product_repository.dart';
 import 'package:acme/src/modules/products/domain/repositories/product_repository_base.dart';
 import 'package:acme/src/modules/products/presentation/states/product/product_bloc.dart';
+import 'package:acme/src/modules/products/presentation/states/product_favorites/product_favorites_cubit.dart';
 import 'package:acme/src/shared/modules/http_client/domain/services/http_client_service.dart';
 import 'package:provider/provider.dart';
 
@@ -14,5 +15,10 @@ final productModules = <Provider>[
     create: (context) => ProductBloc(
       productRepository: context.read<ProductRepositoryBase>(),
     ),
-  )
+  ),
+  Provider<ProductFavoritesCubit>(
+    create: (context) => ProductFavoritesCubit(
+      productRepository: context.read<ProductRepositoryBase>(),
+    ),
+  ),
 ];

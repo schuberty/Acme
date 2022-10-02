@@ -1,17 +1,18 @@
 import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
 import 'package:acme/src/shared/app/app_constants.dart';
+import 'package:acme/src/shared/utils/extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
-  final double cardHeight;
   final EdgeInsets cardMargin;
+  final double cardHeight;
 
   const ProductCard(
     this.product, {
-    this.cardHeight = 120,
     this.cardMargin = const EdgeInsets.fromLTRB(16, 4, 16, 4),
+    this.cardHeight = 120,
     super.key,
   }) : assert(cardHeight >= 120);
 
@@ -33,7 +34,7 @@ class ProductCard extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(8),
       child: const Icon(
-        Icons.favorite,
+        Icons.star_rounded,
         color: AppConstants.tertiaryColor,
       ),
     );
@@ -53,7 +54,7 @@ class ProductCard extends StatelessWidget {
               offset: Offset(0, 1),
               spreadRadius: 1,
               blurRadius: 2,
-            )
+            ),
           ],
           borderRadius: borderRadius,
         ),
@@ -76,7 +77,7 @@ class ProductCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              if (!product.isFavorite) favoriteWidget,
+              if (product.isFavorite) favoriteWidget,
               Flexible(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -92,7 +93,7 @@ class ProductCard extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Text(
-                            "R\$${product.price.toStringAsFixed(2)}",
+                            product.price.formatToReal(),
                             style: Theme.of(context).textTheme.titleSmall,
                           )
                         ],

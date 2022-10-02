@@ -12,12 +12,26 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc({required ProductRepositoryBase productRepository})
       : _productRepository = productRepository,
         super(ProductInitial()) {
-    on<FetchProducts>(_fetchproducts);
+    on<FetchProducts>(_fetchProducts);
+    on<ClearProducts>(_clearProducts);
   }
 
-  void _fetchproducts(FetchProducts event, Emitter<ProductState> emitter) async {
+  void _fetchProducts(FetchProducts event, Emitter<ProductState> emitter) async {
+    final products = <ProductEntity>[];
     final productStream = _productRepository.fetchProducts();
 
-    await productStream.forEach((product) => emitter(ProductAdded(product)));
+    emitter(ProductsLoading());
+
+    await productStream.forEach((product) {
+      products.add(product);
+
+      emitter(ProductsUpdated(products.toList(), products.length - 1));
+    });
+
+    emitter(ProductsFetched(products));
+  }
+
+  void _clearProducts(ClearProducts event, Emitter<ProductState> emitter) async {
+    emitter(ProductsCleared());
   }
 }

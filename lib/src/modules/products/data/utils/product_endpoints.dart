@@ -13,7 +13,7 @@ class ProductEndpoints {
   }
 
   static String getDescriptionUrlEndpoint() {
-    final pharagraphs = Random().nextInt(3) + 1;
+    final pharagraphs = Random().nextInt(3) + 2;
     final pharagraphLength = Random().nextBool() ? 'short' : 'medium';
 
     final endpoint = "$_loripsumAPIUrl/$pharagraphs/$pharagraphLength/plaintext";
