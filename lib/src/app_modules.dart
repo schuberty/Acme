@@ -1,3 +1,4 @@
+import 'package:acme/src/modules/cart/cart_modules.dart';
 import 'package:acme/src/modules/products/product_module.dart';
 import 'package:acme/src/shared/modules/shared_modules.dart';
 import 'package:provider/provider.dart';
@@ -5,4 +6,5 @@ import 'package:provider/provider.dart';
 final appModules = <Provider>[
   ...sharedModules,
   ...productModules,
+  ...cartModules,
 ];
