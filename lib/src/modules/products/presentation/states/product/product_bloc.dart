@@ -7,7 +7,9 @@ part 'product_event.dart';
 part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  final List<ProductEntity> products = <ProductEntity>[];
+  final List<ProductEntity> _products = <ProductEntity>[];
+
+  List<ProductEntity> get products => _products;
 
   final ProductRepositoryBase _productRepository;
 
@@ -24,12 +26,12 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     emitter(ProductsLoading());
 
     await productStream.forEach((product) {
-      products.add(product);
+      _products.add(product);
 
       emitter(ProductsUpdated(products.toList(), products.length - 1));
     });
 
-    emitter(ProductsFetched(products));
+    emitter(ProductsFetched(_products));
   }
 
   void _clearProducts(ClearProducts event, Emitter<ProductState> emitter) async {

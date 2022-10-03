@@ -5,30 +5,32 @@ import 'package:equatable/equatable.dart';
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  final Map<int, int> cart = {};
+  final Map<int, int> _cart = {};
+
+  Map<int, int> get cart => _cart;
 
   CartCubit() : super(CartInitial());
 
   void addProductToCart(ProductEntity product) async {
-    cart[product.id] = (cart[product.id] ?? 0) + 1;
+    _cart[product.id] = (_cart[product.id] ?? 0) + 1;
 
-    emit(CartUpdated(productID: product.id, updatedAmmount: cart[product.id]!));
+    emit(CartUpdated(productID: product.id, updatedAmmount: _cart[product.id]!));
   }
 
   void removeProductFromCart(ProductEntity product) {
-    if (cart[product.id] != null) {
-      cart[product.id] = cart[product.id]! - 1;
+    if (_cart[product.id] != null) {
+      _cart[product.id] = _cart[product.id]! - 1;
 
-      emit(CartUpdated(productID: product.id, updatedAmmount: cart[product.id]!));
+      emit(CartUpdated(productID: product.id, updatedAmmount: _cart[product.id]!));
 
-      if (cart[product.id] == 0) {
-        cart.remove(product.id);
+      if (_cart[product.id] == 0) {
+        _cart.remove(product.id);
       }
     }
   }
 
   void clearProductsFromCart() {
-    cart.clear();
+    _cart.clear();
 
     emit(CartCleared());
   }

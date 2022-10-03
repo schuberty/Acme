@@ -5,7 +5,9 @@ import 'package:equatable/equatable.dart';
 part 'product_favorites_state.dart';
 
 class ProductFavoritesCubit extends Cubit<ProductFavoritesState> {
-  final Set<int> productFavoriteIDs = {};
+  final Set<int> _productFavoriteIDs = {};
+
+  Set<int> get productFavoriteIDs => _productFavoriteIDs;
 
   final ProductRepositoryBase _productRepository;
 
@@ -16,20 +18,21 @@ class ProductFavoritesCubit extends Cubit<ProductFavoritesState> {
   void setProductFavorite(int productID, bool isProductFavorite) async {
     await _productRepository.setProductFavorite(productID, isProductFavorite);
 
-    if (!isProductFavorite && productFavoriteIDs.contains(productID)) {
-      productFavoriteIDs.remove(productID);
+    if (!isProductFavorite && _productFavoriteIDs.contains(productID)) {
+      _productFavoriteIDs.remove(productID);
     } else {
-      productFavoriteIDs.add(productID);
+      _productFavoriteIDs.add(productID);
     }
 
+    print(_productFavoriteIDs);
     emit(FavoriteProductUpdated(productID: productID, isProductFavorite: isProductFavorite));
   }
 
   void fetchProductFavorites() async {
     final favoriteProductsID = await _productRepository.getProductFavoritesID();
 
-    productFavoriteIDs.clear();
-    productFavoriteIDs.addAll(favoriteProductsID);
+    _productFavoriteIDs.clear();
+    _productFavoriteIDs.addAll(favoriteProductsID);
 
     emit(FavoriteProductsIDFetched(favoriteProductsID: favoriteProductsID));
   }

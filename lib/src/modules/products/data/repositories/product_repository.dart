@@ -21,7 +21,7 @@ class ProductRepository implements ProductRepositoryBase {
       final id = title.hashCode;
 
       final descriptionEndpoint = ProductEndpoints.getDescriptionUrlEndpoint();
-      final descriptionResponse = await _client.get(descriptionEndpoint);
+      final descriptionResponse = await _client.get(descriptionEndpoint) as String;
 
       final imageEndpoint = ProductEndpoints.getImageUrlEndpoint(imageId: id.toString());
 
