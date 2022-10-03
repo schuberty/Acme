@@ -24,7 +24,6 @@ class ProductFavoritesCubit extends Cubit<ProductFavoritesState> {
       _productFavoriteIDs.add(productID);
     }
 
-    print(_productFavoriteIDs);
     emit(FavoriteProductUpdated(productID: productID, isProductFavorite: isProductFavorite));
   }
 
