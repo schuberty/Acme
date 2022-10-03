@@ -2,7 +2,6 @@ import 'package:acme/src/modules/cart/presentation/pages/cart_page.dart';
 import 'package:acme/src/modules/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:acme/src/modules/home/presentation/pages/home_page.dart';
 import 'package:acme/src/modules/products/presentation/pages/product_page.dart';
-import 'package:acme/src/modules/products/presentation/pages/products_favorite_page.dart';
 import 'package:acme/src/shared/app/route/route_animator.dart';
 import 'package:acme/src/shared/app/route/route_arguments.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +17,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomePage());
       case '/product':
         return _productRoute(argument);
-      case '/product/favorites':
-        return RouteAnimator.bottomToTopRoute(const ProductsFavoritePage());
       case '/dashboard':
         return RouteAnimator.bottomToTopRoute(const DashboardPage());
       case '/cart':
