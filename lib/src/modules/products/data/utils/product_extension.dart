@@ -11,4 +11,14 @@ extension ProductExtension on ProductEntity {
       price: price,
     );
   }
+
+  String toJsonString() {
+    return '''
+    "id": $id,
+    "title": "$title",
+    "description": "${description.substring(0, description.length ~/ 10)}...",
+    "imageUrl": "$imageUrl",
+    "isFavorite": $isFavorite,
+    "price": $price''';
+  }
 }

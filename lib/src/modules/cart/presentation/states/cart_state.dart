@@ -18,3 +18,5 @@ class CartUpdated extends CartState {
   @override
   List<Object> get props => [productID, updatedAmmount];
 }
+
+class CartCleared extends CartState {}

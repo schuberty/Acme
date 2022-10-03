@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ProductFloatingActions extends StatelessWidget {
+class FloatingActionButtons extends StatelessWidget {
   final List<Widget> actions;
 
-  const ProductFloatingActions({
+  const FloatingActionButtons({
     required this.actions,
     super.key,
   });

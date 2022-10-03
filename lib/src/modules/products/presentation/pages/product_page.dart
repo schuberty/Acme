@@ -1,10 +1,10 @@
 import 'package:acme/src/modules/cart/presentation/states/cart_cubit.dart';
 import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
-import 'package:acme/src/modules/products/presentation/components/product_floating_action.dart';
 import 'package:acme/src/modules/products/presentation/components/product_page_header.dart';
 import 'package:acme/src/modules/products/presentation/states/product_favorites/product_favorites_cubit.dart';
 import 'package:acme/src/shared/app/app_constants.dart';
 import 'package:acme/src/shared/components/buttons/centered_button.dart';
+import 'package:acme/src/shared/components/floating_action_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,7 +68,7 @@ class _ProductPageState extends State<ProductPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: ProductFloatingActions(
+      floatingActionButton: FloatingActionButtons(
         actions: <Widget>[
           Flexible(
             flex: 3,

@@ -14,7 +14,7 @@ class CenteredButton extends StatelessWidget {
     required this.icon,
     this.onTap,
     this.label,
-    this.backgroundColor = Colors.blueGrey,
+    this.backgroundColor = AppConstants.secondaryColor,
     super.key,
   });
 
@@ -24,10 +24,13 @@ class CenteredButton extends StatelessWidget {
 
     if (label != null) {
       labelWidget = [
-        const SizedBox(width: 16),
-        Text(
-          label!,
-          style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppConstants.primaryColor),
+        Container(
+          margin: const EdgeInsets.only(left: 4),
+          child: Text(
+            label!,
+            style:
+                Theme.of(context).textTheme.labelLarge!.copyWith(color: AppConstants.primaryColor),
+          ),
         )
       ];
     }
