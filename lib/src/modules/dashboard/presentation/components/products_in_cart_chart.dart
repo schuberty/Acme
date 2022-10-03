@@ -22,6 +22,42 @@ class ProductsInCartChart extends StatelessWidget {
       }
     }
 
+    late final Widget chart;
+
+    if (products.isEmpty) {
+      chart = SizedBox(
+        height: 100,
+        child: Center(
+          child: Text(
+            "Nenhum produto adicionado no carrinho",
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: AppConstants.secondaryColor),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    } else {
+      chart = SfCircularChart(
+        series: <CircularSeries>[
+          DoughnutSeries<ProductEntity, String>(
+            dataSource: products,
+            xValueMapper: (product, index) => product.title,
+            yValueMapper: (product, index) => productIDsInCart[product.id],
+            dataLabelSettings: const DataLabelSettings(isVisible: true),
+            animationDuration: 600,
+          )
+        ],
+        tooltipBehavior: TooltipBehavior(enable: true),
+        legend: Legend(
+          isVisible: true,
+          textStyle:
+              Theme.of(context).textTheme.bodySmall!.copyWith(color: AppConstants.secondaryColor),
+        ),
+      );
+    }
+
     return ExpansionTile(
       title: Text(
         "Produtos no Carrinho",
@@ -29,24 +65,7 @@ class ProductsInCartChart extends StatelessWidget {
             Theme.of(context).textTheme.titleMedium!.copyWith(color: AppConstants.secondaryColor),
       ),
       iconColor: AppConstants.tertiaryColor,
-      children: [
-        SfCircularChart(
-          series: <CircularSeries>[
-            DoughnutSeries<ProductEntity, String>(
-              dataSource: products,
-              xValueMapper: (product, index) => product.title,
-              yValueMapper: (product, index) => productIDsInCart[product.id],
-            )
-          ],
-          tooltipBehavior: TooltipBehavior(enable: true),
-          legend: Legend(
-            isVisible: true,
-            position: LegendPosition.bottom,
-            textStyle:
-                Theme.of(context).textTheme.bodySmall!.copyWith(color: AppConstants.secondaryColor),
-          ),
-        )
-      ],
+      children: [chart],
     );
   }
 }

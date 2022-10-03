@@ -33,8 +33,9 @@ class _CartPageState extends State<CartPage> {
     if (productsInCart.isEmpty) {
       body = Center(
         child: Text(
-          "Nenhum item no carrinho!",
-          style: Theme.of(context).textTheme.headlineSmall,
+          "Nenhum produto adicionado no carrinho",
+          style:
+              Theme.of(context).textTheme.labelLarge!.copyWith(color: AppConstants.secondaryColor),
           textAlign: TextAlign.center,
         ),
       );

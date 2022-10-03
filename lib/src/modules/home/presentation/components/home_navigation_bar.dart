@@ -10,7 +10,7 @@ class HomeNavigationBar extends StatelessWidget {
     return Container(
       height: 60,
       width: double.infinity,
-      color: AppConstants.tertiaryColor,
+      color: AppConstants.secondaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -22,21 +22,25 @@ class HomeNavigationBar extends StatelessWidget {
             icon: Icons.show_chart_rounded,
             bellowText: "Dashboard",
             iconColor: AppConstants.primaryColor.withOpacity(0.8),
-            onTap: () => pushDashboard(context),
+            onTap: () => pushToDashboard(context),
           ),
           IconTextButton(
-            icon: Icons.star_rounded,
-            bellowText: "Favoritos",
+            icon: Icons.shopping_cart_checkout,
+            bellowText: "Carrinho",
             iconColor: AppConstants.primaryColor.withOpacity(0.8),
-            onTap: () => favoritesNotImplemented(context),
+            onTap: () => pushToCart(context),
           ),
         ],
       ),
     );
   }
 
-  void pushDashboard(BuildContext context) {
+  void pushToDashboard(BuildContext context) {
     Navigator.of(context).pushNamed('/dashboard');
+  }
+
+  void pushToCart(BuildContext context) {
+    Navigator.of(context).pushNamed('/cart');
   }
 
   void favoritesNotImplemented(BuildContext context) {
