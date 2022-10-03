@@ -17,28 +17,31 @@ class AppRouter {
       case '/':
         return MaterialPageRoute(builder: (_) => const HomePage());
       case '/product':
-        if (argument is ProductRouteArgument) {
-          return MaterialPageRoute(
-            builder: (context) => ProductPage(
-              product: argument.product,
-              heroPage: argument.heroPage,
-            ),
-          );
-        } else {
-          throw RouteArgumentException(
-            receivedObject: argument,
-            targetRouteArgument: ProductRouteArgument,
-          );
-        }
+        return _productRoute(argument);
       case '/product/favorites':
         return RouteAnimator.bottomToTopRoute(const ProductsFavoritePage());
-
       case '/dashboard':
         return RouteAnimator.bottomToTopRoute(const DashboardPage());
       case '/cart':
         return RouteAnimator.rightToLeftRoute(const CartPage());
       default:
         return null;
+    }
+  }
+
+  static PageRoute<dynamic> _productRoute(dynamic argument) {
+    if (argument is ProductRouteArgument) {
+      return MaterialPageRoute(
+        builder: (context) => ProductPage(
+          product: argument.product,
+          heroPage: argument.heroPage,
+        ),
+      );
+    } else {
+      throw RouteArgumentException(
+        receivedObject: argument,
+        targetRouteArgument: ProductRouteArgument,
+      );
     }
   }
 }

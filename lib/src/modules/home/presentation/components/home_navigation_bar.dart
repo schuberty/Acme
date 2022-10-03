@@ -22,16 +22,35 @@ class HomeNavigationBar extends StatelessWidget {
             icon: Icons.show_chart_rounded,
             bellowText: "Dashboard",
             iconColor: AppConstants.primaryColor.withOpacity(0.8),
-            onTap: () => Navigator.of(context).pushNamed('/dashboard'),
+            onTap: () => pushDashboard(context),
           ),
           IconTextButton(
             icon: Icons.star_rounded,
             bellowText: "Favoritos",
             iconColor: AppConstants.primaryColor.withOpacity(0.8),
-            onTap: () => Navigator.of(context).pushNamed('/product/favorites'),
+            onTap: () => favoritesNotImplemented(context),
           ),
         ],
       ),
     );
+  }
+
+  void pushDashboard(BuildContext context) {
+    Navigator.of(context).pushNamed('/dashboard');
+  }
+
+  void favoritesNotImplemented(BuildContext context) {
+    //  Navigator.of(context).pushNamed('/product/favorites')
+
+    const snackBar = SnackBar(
+      content: Text("Implementação dos Favoritos não concluída."),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: AppConstants.tertiaryColor,
+      duration: Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

@@ -24,7 +24,7 @@ class RouteArgumentException implements Exception {
   @override
   String toString() {
     final message =
-        "Expected $ProductRouteArgument object, instead got a ${receivedObject.runtimeType}";
+        "Expected '$ProductRouteArgument' object, instead got '${receivedObject.runtimeType}'";
     return "Exception: $message";
   }
 }
