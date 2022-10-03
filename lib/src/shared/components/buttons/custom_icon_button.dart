@@ -5,11 +5,13 @@ class CustomIconButton extends StatelessWidget {
   final IconData icon;
   final EdgeInsets? margin;
   final VoidCallback? onTap;
+  final Color? iconColor;
 
   const CustomIconButton(
     this.icon, {
     this.margin,
     this.onTap,
+    this.iconColor,
     super.key,
   });
 
@@ -21,7 +23,7 @@ class CustomIconButton extends StatelessWidget {
         margin: margin,
         child: Icon(
           icon,
-          color: AppConstants.primaryColor,
+          color: iconColor ?? AppConstants.primaryColor,
         ),
       ),
     );
