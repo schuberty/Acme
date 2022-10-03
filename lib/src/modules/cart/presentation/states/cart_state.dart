@@ -9,11 +9,12 @@ abstract class CartState extends Equatable {
 
 class CartInitial extends CartState {}
 
-class FetchProductsFromCart extends CartState {
-  final List<ProductEntity> _products;
+class CartUpdated extends CartState {
+  final int productID;
+  final int updatedAmmount;
 
-  const FetchProductsFromCart(this._products);
+  const CartUpdated({required this.productID, required this.updatedAmmount});
 
   @override
-  List<Object> get props => [_products];
+  List<Object> get props => [productID, updatedAmmount];
 }

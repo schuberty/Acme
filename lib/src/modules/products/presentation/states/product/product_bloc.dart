@@ -7,6 +7,8 @@ part 'product_event.dart';
 part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
+  final List<ProductEntity> products = <ProductEntity>[];
+
   final ProductRepositoryBase _productRepository;
 
   ProductBloc({required ProductRepositoryBase productRepository})
@@ -17,7 +19,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   void _fetchProducts(FetchProducts event, Emitter<ProductState> emitter) async {
-    final products = <ProductEntity>[];
     final productStream = _productRepository.fetchProducts();
 
     emitter(ProductsLoading());

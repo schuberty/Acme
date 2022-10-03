@@ -8,11 +8,13 @@ class ProductCard extends StatelessWidget {
   final ProductEntity product;
   final EdgeInsets cardMargin;
   final double cardHeight;
+  final String heroPage;
 
   const ProductCard(
     this.product, {
     this.cardMargin = const EdgeInsets.fromLTRB(16, 4, 16, 4),
     this.cardHeight = 120,
+    this.heroPage = "",
     super.key,
   }) : assert(cardHeight >= 120);
 
@@ -40,7 +42,7 @@ class ProductCard extends StatelessWidget {
     );
 
     final resultWidget = Hero(
-      tag: product.id,
+      tag: "${product.id}_$heroPage",
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

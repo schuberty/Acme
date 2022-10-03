@@ -38,9 +38,6 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                 state.indexUpdated,
                 duration: const Duration(milliseconds: 400),
               );
-            } else if (state is ProductsFetched) {
-              products.clear();
-              products.addAll(state.products);
             } else if (state is ProductsCleared) {
               for (var i = 0; i < products.length; i++) {
                 listState.currentState!.removeItem(0, (context, _) => const SizedBox.shrink());
@@ -77,7 +74,9 @@ class _ProductListWidgetState extends State<ProductListWidget> {
           initialItemCount: products.length,
           itemBuilder: (context, index, Animation<double> animation) {
             final product = products[index];
+
             EdgeInsets cardMargin = const EdgeInsets.fromLTRB(16, 8, 16, 0);
+
             if (index == (products.length - 1)) {
               cardMargin = cardMargin.copyWith(bottom: 8);
             }
@@ -86,6 +85,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
               product,
               cardHeight: 130,
               cardMargin: cardMargin,
+              heroPage: "product",
             );
 
             return SizeTransition(
@@ -97,7 +97,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 
                   Navigator.of(context).pushNamed(
                     "/product",
-                    arguments: ProductRouteArgument(product: product),
+                    arguments: ProductRouteArgument(product: product, heroPage: "product"),
                   );
                 },
                 child: card,

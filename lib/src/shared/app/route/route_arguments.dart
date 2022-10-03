@@ -4,8 +4,12 @@ abstract class RouteArgumentBase {}
 
 class ProductRouteArgument implements RouteArgumentBase {
   final ProductEntity product;
+  final String heroPage;
 
-  ProductRouteArgument({required this.product});
+  ProductRouteArgument({
+    required this.product,
+    this.heroPage = "",
+  });
 }
 
 class RouteArgumentException implements Exception {

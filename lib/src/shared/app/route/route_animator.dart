@@ -13,6 +13,16 @@ class RouteAnimator {
     );
   }
 
+  static PageRouteBuilder rightToLeftRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+        position: slideAnimation(animation, begin: const Offset(1.0, 0.0)),
+        child: child,
+      ),
+    );
+  }
+
   static Animation<Offset> slideAnimation(
     Animation<double> animation, {
     Offset begin = const Offset(1.0, 0.0),

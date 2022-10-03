@@ -1,3 +1,4 @@
+import 'package:acme/src/modules/cart/presentation/states/cart_cubit.dart';
 import 'package:acme/src/modules/products/domain/entities/product_entity.dart';
 import 'package:acme/src/modules/products/presentation/components/product_floating_action.dart';
 import 'package:acme/src/modules/products/presentation/components/product_page_header.dart';
@@ -9,8 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductPage extends StatefulWidget {
   final ProductEntity product;
+  final String heroPage;
 
-  const ProductPage({required this.product, super.key});
+  const ProductPage({
+    required this.product,
+    this.heroPage = "product",
+    super.key,
+  });
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -44,6 +50,7 @@ class _ProductPageState extends State<ProductPage> {
             ProductPageHeader(
               product: widget.product,
               height: screenHeight * 0.4,
+              heroPage: widget.heroPage,
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -72,11 +79,12 @@ class _ProductPageState extends State<ProductPage> {
               onTap: () => _setProductFavoriteStatus(context),
             ),
           ),
-          const Flexible(
+          Flexible(
             flex: 2,
             child: CenteredButton(
               icon: Icons.add_shopping_cart,
               backgroundColor: AppConstants.secondaryColor,
+              onTap: () => context.read<CartCubit>().addProductToCart(widget.product),
             ),
           ),
         ],
