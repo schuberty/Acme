@@ -9,12 +9,14 @@ class CenteredButton extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData icon;
   final String? label;
+  final EdgeInsets margin;
 
   const CenteredButton({
     required this.icon,
     this.onTap,
     this.label,
     this.backgroundColor = AppConstants.secondaryColor,
+    this.margin = EdgeInsets.zero,
     super.key,
   });
 
@@ -38,7 +40,7 @@ class CenteredButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => _onTap(context),
       child: Container(
-        margin: const EdgeInsets.only(right: 8),
+        margin: margin,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: backgroundColor,

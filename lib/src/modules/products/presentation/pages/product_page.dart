@@ -76,7 +76,8 @@ class _ProductPageState extends State<ProductPage> {
               icon: isFavorite ? Icons.star_rounded : Icons.star_outline_rounded,
               backgroundColor: AppConstants.tertiaryColor,
               label: isFavorite ? "Desfavoritar" : "Favoritar",
-              onTap: () => _setProductFavoriteStatus(context),
+              onTap: () => setProductFavoriteStatus(context),
+              margin: const EdgeInsets.only(right: 4),
             ),
           ),
           Flexible(
@@ -84,7 +85,8 @@ class _ProductPageState extends State<ProductPage> {
             child: CenteredButton(
               icon: Icons.add_shopping_cart,
               backgroundColor: AppConstants.secondaryColor,
-              onTap: () => context.read<CartCubit>().addProductToCart(widget.product),
+              onTap: () => addProductToCart(context),
+              margin: const EdgeInsets.only(left: 4),
             ),
           ),
         ],
@@ -92,7 +94,22 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  void _setProductFavoriteStatus(BuildContext context) {
+  void setProductFavoriteStatus(BuildContext context) {
     context.read<ProductFavoritesCubit>().setProductFavorite(widget.product.id, !isFavorite);
+  }
+
+  void addProductToCart(BuildContext context) {
+    context.read<CartCubit>().addProductToCart(widget.product);
+
+    const snackBar = SnackBar(
+      content: Text("Produto adicionado"),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: AppConstants.secondaryColor,
+      duration: Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
