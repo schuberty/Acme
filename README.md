@@ -21,6 +21,8 @@ Outros pacotes que ajudaram durante o desenvolvimento foram:
 
 # Como Usar o Repositório
 
+Uma prévia do aplicativo pode ser visto no final deste Readme, também uma versão atualizado do aplicativo pode ser baixado na aba de releases do Github, caso deseja rodar localmente a partir da source, siga as instruções abaixo.
+
 Após clona-lo, certifique-se de:
 
 1. Rodar o comando `flutter pub get` para obter os pacotes mencionados no [pubspec.yaml](./pubspec.yaml).
@@ -46,6 +48,6 @@ Aplicativo foi testado somente na plataforma Android, não sabendo como pode se 
 
 <div align="center">
 
-
+https://user-images.githubusercontent.com/38429464/193708144-2cd05c88-550f-4b52-abd8-60eb51aa75b1.mp4
 
 </div>
