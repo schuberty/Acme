@@ -4,8 +4,8 @@
 
 Aplicativo desenvolvido como um teste tendo o objetivo de criar interface e arquitetura de um aplicativo proposto do zero.
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/schuberty/Jera-Muvver)
-![GitHub last commit](https://img.shields.io/github/last-commit/schuberty/Jera-Muvver?color=yellow)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/schuberty/Acme)
+![GitHub last commit](https://img.shields.io/github/last-commit/schuberty/Acme?color=yellow)
 
 </div>
 
